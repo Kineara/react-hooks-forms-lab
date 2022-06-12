@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import { v4 as uuid } from "uuid";
 
+<<<<<<< HEAD
 function ItemForm({
   itemName,
   itemCategory,
@@ -30,22 +31,55 @@ function ItemForm({
           value={itemName}
           onChange={onNewItemNameChange}
         />
+=======
+function ItemForm({onItemFormSubmit}) {
+
+  const [itemName, setItemName] = useState("");
+  const [itemCategory, setCategory] = useState("Produce");
+
+  function onNameChange(event) {
+    setItemName(event.target.value);
+  }
+
+  function onCategoryChange(event) {
+    setCategory(event.target.value);
+  }
+
+  function submitHandler() {
+    const newItem = {
+      id: uuid(),
+      name: itemName,
+      category: itemCategory,
+    }
+    onItemFormSubmit(newItem);
+  }
+
+  return (
+    <form className="NewItem" onSubmit={submitHandler}>
+      <label>
+        Name:
+        <input type="text" name="name" onChange = {onNameChange}/>
+>>>>>>> refs/remotes/origin/master
       </label>
 
       <label>
         Category:
+<<<<<<< HEAD
         <select
           name="category"
           value={itemCategory}
           onChange={onNewItemCategoryChange}
         >
+=======
+        <select name="category" onChange={onCategoryChange}>
+>>>>>>> refs/remotes/origin/master
           <option value="Produce">Produce</option>
           <option value="Dairy">Dairy</option>
           <option value="Dessert">Dessert</option>
         </select>
       </label>
 
-      <button type="submit">Add to List</button>
+      <button type="submit" >Add to List</button>
     </form>
   );
 }
